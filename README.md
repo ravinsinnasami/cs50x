@@ -1,6 +1,6 @@
 # CS50X
 
-This repo holds all the notes and exercise Python file from CS50p.
+This repo holds all the notes and exercise Python file from CS50X.
 
 CS50X Course layout:
 - Week 0 (Scratch)

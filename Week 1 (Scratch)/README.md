@@ -21,6 +21,7 @@
 - File that holds C codes ends with **.c**.
 - C codes are compiled using the command `make filename`
   - filename ends with .c but not required to be used when compiling
+  - everytime change is made, the `make` command must be re-run
 - compiled file is run using `./filename`
   - `./` means in current directory
   - `filename` is same as the .c filename without the extension
@@ -77,6 +78,8 @@
     4 $:
     ```
 
+<br>
+
 - printing in C is done using `printf("");`
   - items to be printed are enclosed within double quotes
   - `printf()` is a function. Functions are code which can be used repeatedly that does a specific thing.
@@ -104,6 +107,9 @@
   - `float` (decimal numbers)
   - `double` (larger range of `float`)
   - `bool` (only has 2 values: `True` or `False`)
+
+<br>
+
 - Variables can be looked as containers that hold information (specific data).
   - a variable need to be declared (created) with the appropriate data type to hold said value.
   - variable name is used to identify the variable and usually starts with uppercase or lowercase letter.
@@ -132,6 +138,45 @@
     // initialized at once
     float height = 173.2;
     ``` 
+
+<br>
+
+- different variable types have the variables written differently.
+- Examples are as following:
+  - `string` (more than 1 characters)
+    ```c
+    string name = "James";
+    ```
+  - `char` (exactly 1 character)
+    ```c
+    char enabled = 'Y';
+    ```
+  - `int` (integers, both positive and negative)
+    ```c
+    int age = 23;
+    ```
+  - `long` (larger range of `int`)
+    ```c
+    long money = 22000000;
+    ```
+  - `float` (decimal numbers)
+    ```c
+    float weight = 65.5;
+    ```
+  - `double` (larger range of `float`)
+    ```c
+    double measurement = 45.555;
+    ```
+  - `bool` (only has 2 values: `True` or `False`)
+    ```c
+    bool protected = True;
+    ```
+- Note that only `string` and `char` are enclosed in quotes.
+  - `string` => always double quotes
+  - `char` => always single quotes 
+
+<br>
+
 - Variables can also store information from user. This is done by getting input from user, storing in variable and subsequently, using/printing it.
   - CS50.h library has different functions that get input from user
   - Example of getting a name from user, storing it and then printing a greeting using given name in a file called `greet.c`
@@ -162,6 +207,9 @@
     - `%s` is a placeholder. Variable that is passed in occupies the placeholder.
     - `"hello there, %s"` is the print statement. `name` is the variable that is passed in. Both are separated by a comma.
     - other placeholders include: `%c` for char, `%f` for float or double, `%i` for int.
+
+<br>
+
 - variables that are created thus far, can be overwritten. Example (`age.c`):
     ```c
     #include <stdio.h>
@@ -190,14 +238,136 @@
     4 overwriting variable
     5 Current age: 31
     ```
-- variables that should not be overwritten or kept constant should be declared/initialized with `const`. constant variables are usually written in all caps:
+- Values that are assigned within the code are usually code "magic number".
+  - if possible, hard coding values should be avoided unless it's a fixed value that won't change.
+  - commonly values are assigned into variables via input or other operations.
+- variables that should not be overwritten or kept constant should be declared/initialized with `const`. constant variables' name are usually written in all caps:
     ```c
     const int NAME = "James";
     ```
 
 <br>
 
-#### **3. Conditionals and Operators**
+#### **3. Arithmetics Operators, Formatting and Typecasting**
+- there are 5 arithmetic operators:
+  - `+` (addition)
+  - `-` (subtraction)
+  - `*` (multiplication)
+  - `/` (division)
+  - `%` (modulus)
+- A division operator gives the value of the quotient whereas modulus operator gives the value of the remainder.
+- Examples of arithmetic operations:
+  - Using only integers
+    ```c
+    // filename will be int_op.c
+    #include <stdio.h>
+
+    int main(void)
+    {
+      // using int only
+      int added = 1 + 1;
+      int subtracted = 4-2;
+      int multiplied = 2*7;
+      int divided = 5/3;
+      int remainder = 5%3;
+
+      printf("Added value is %i\n", added);
+      printf("Subtracted value is %i\n", subtracted);
+      printf("Multiplied value is %i\n", multiplied);
+      printf("Divided value is %i\n", divided);
+      printf("Remainder value is %i\n", remainder);
+    }
+    ```
+    - This outputs:
+      ```shell
+      Added value is 2
+      Subtracted value is 2
+      Multiplied value is 14
+      Divided value is 1
+      Remainder value is 2
+      ```
+      - Note: for divided 5/3, we get 1 (the quotient, top value). For same operation, if we use operator, we get 2 (the remainder, bottom value). Both are shown below
+
+          $\begin{array}{r}
+          1\phantom{)}   \\
+          3{\overline{\smash{\big)}\,5\phantom{)}}}\\
+          \underline{-~\phantom{(}(3)}\\
+          2\phantom{)}\\ 
+          \end{array}$
+
+  - Using only decimals
+    ```c
+    // filename will be dec_op.c
+    #include <stdio.h>
+
+    int main(void)
+    {
+      // using decimals only
+      float added = 1.2+ 1.5;
+      float subtracted = 4.3-2.9;
+      float multiplied = 2.1*7;
+      float divided = 5.3/3;
+      //float remainder = 5.3 % 3.0; //this gives error as % is an integer operation
+      
+      //printing as it is
+      printf("Added value is %f\n", added);
+      printf("Subtracted value is %f\n", subtracted);
+      printf("Multiplied value is %f\n", multiplied);
+      printf("Divided value is %f\n", divided);
+
+      // adding space between two printouts
+      printf("\n");
+
+      // printing with small addition in formatting
+      printf("Added value is %.2f\n", added);
+      printf("Subtracted value is %.2f\n", subtracted);
+      printf("Multiplied value is %.2f\n", multiplied);
+      printf("Divided value is %.2f\n", divided);
+    }
+    ```
+    - This outputs:
+      ```shell
+      Added value is 2.700000
+      Subtracted value is 1.400000
+      Multiplied value is 14.700000
+      Divided value is 1.766667
+
+      Added value is 2.70
+      Subtracted value is 1.40
+      Multiplied value is 14.70
+      Divided value is 1.77
+      ```
+      - float and float results in float end value. float and integer also result in float end value.
+      - `%.2f` => `%f` is placeholder for float variable. `.2f` means 2 decimal places.
+      - if 4 decimal places is need, it'll be `%.4f`
+  - You can convert numbers from one type to another type by typecasting.
+    - It is done by putting the new type to be casted into infront of the variable you want to convert to.
+      ```c
+      // filename will be int_op.c
+      #include <stdio.h>
+
+      int main(void)
+      {
+        int x = 2;
+        int y = 4;
+
+        // required multiplication result in 2 decimal places.
+        // storing answer in new variable and printing it
+        // you can type cast both x and y or either but stored variable 
+        // must be of type float.
+        float z = (float) x * (float) y;
+
+        printf("The multiplication value is %.2f\n", z);
+      }
+      ```
+    - This outputs:
+      ```shell
+      The multiplication value is 8.00
+      ```
+
+<br>
+
+#### **4. Conditionals and Logical Operators**
 - To execute codes only when certain condition is fulfilled, a conditional statement can be used.
 - conditional statements are compared using conditional operators
 - the conditional operators are:
@@ -214,67 +384,76 @@
     {
         // do this code
     }
+    ```
+
+<br>
+
 - Conditional statements can take into account multiple scenario; that is if first condition is not satisfied, check next, if not next until the last one. This is done using `if-else if-else` statements:
-```c
-if (age < 18)
-{
-    printf("teenager\n");
-}
-else if (age < 10)
-{
-    printf("toddler\n");
-}
-else{
-    printf("baby\n");
-}
-```
-> This checks if age is under 18, if yes, excute that code and exits. Else, goes to next one. else, prints the final one. In this code, age above 18 prints `baby`
-  - If the last `else` is changed to `else if (age < 5) {printf("baby");}`, then the code does not print anything when age is above 18 (as no condition is satisfied).
-  - If the code was as following:
   ```c
-if (age < 5)
-{
-    printf("baby\n");
-}
-if (age < 10)
-{
-    printf("toddler\n");
-}
-if (age < 18)
-{
-    printf("teenager\n");
-}
-```
-> checking against age 3, yield the following:
-```shell
-1 $: ./file
-2 baby
-3 toddler
-4 teenager
-```
-> all 3 output is printed. Its because each if statement is separated, so, it checks each time. `if-else if-else` is counted as one whole thing. The moment one code is executed, it skips the rest.
-- multiple conditions can be combined to get a more specific code execution.
+  if (age < 18)
+  {
+      printf("teenager\n");
+  }
+  else if (age < 10)
+  {
+      printf("toddler\n");
+  }
+  else{
+      printf("baby\n");
+  }
+  ```
+  > This checks if age is under 18, if yes, excute that code and exits. Else, goes to next one. else, prints the final one. In this code, age above 18 prints `baby`
+- If the last `else` is changed to `else if (age < 5) {printf("baby");}`, then the code does not print anything when age is above 18 (as no condition is satisfied).
+- If the code was as following:
+  ```c
+  if (age < 5)
+  {
+      printf("baby\n");
+  }
+  if (age < 10)
+  {
+      printf("toddler\n");
+  }
+  if (age < 18)
+  {
+      printf("teenager\n");
+  }
+  ```
+  > checking against age 3, yield the following:
+
+  ```shell
+  1 $: ./file
+  2 baby
+  3 toddler
+  4 teenager
+  ```
+  > all 3 output is printed. Its because each if statement is separated, so, it checks each time. `if-else if-else` is counted as one whole thing. The moment one code is executed, it skips the rest.
+  - multiple conditions can be combined to get a more specific code execution.
   - conditions are combined using logical operators such as:
     - `&&` => and operator => check if two conditions are `True`
-    ```c
-    if (age < 23 && name = "James")
-    {   
-        //executes the code if age is 23 and name is James
-    }
-    ```
+      ```c
+      if (age < 23 && name = "James")
+      {   
+          //executes the code if age is 23 and name is James
+      }
+      ```
     - `||` => or operator => check if either one of the condition is `True`
-    ```c
-    if (height > 130 || height < 180)
-    {
-        // executes the code if the given height is above 130 or below 180; meaning in between that range
-    }
-    ```
+      ```c
+      if (height > 130 || height < 180)
+      {
+          // executes the code if the given height is above 130 or below 180; meaning in between that range
+      }
+      ```
     - `!` => not operator => reverses the Boolean value
-    ```c
-    if !(age < 23)
-    {
-        // when age is above 23, it returns False and the ! operator inverts it to True => executing this code block
+      ```c
+      if !(age < 23)
+      {
+          // when age is above 23, it returns False and the ! operator inverts it to True => executing this code block
 
-        // if age is under 23, then the condition is True and the ! operater inverts to False => doesn't execute the code
-    }
+          // if age is under 23, then the condition is True and the ! operater inverts to False => doesn't execute the code
+      }
+      ```
 
+<br>
+
+#### **5. Loops**

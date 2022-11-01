@@ -1,6 +1,29 @@
 # Notes for Week 1 (C)
 
+## Table of contents:
+1. [General](#general)
+2. [C Related](#c-related)
+    1. [General](#general)
+    2. [Coding](#coding)
+        1. [Printing](#1-printing)
+        2. [Data Types and Variables](#2-data-types-and-variables)
+            1. [Data Types](#a-data-types)
+            2. [Variables](#b-variables)
+            3. [Variables with different data types](#c-variables-with-different-data-types)
+            4. [User Input](#d-user-input)
+            5. [Overwriting Variables and Constant Variables](#e-overwriting-variables-and-constant-variables)
+        3. [Arithmetics Operators, Formatting and Typecasting](#3-arithmetics-operators-formatting-and-typecasting)
+            1. [Arithmetic Operators](#a-arithmetic-operators)
+            2. [Using Arithmetic Operators](#b-using-arithmetic-operators)
+        4. [Conditionals and Logical Operators](#4-conditionals-and-logical-operators)
+            1. [Types of Conditional Operators](#a-types-of-conditional-operators)
+            2. [Conditional Statements](#b-conditional-statements)
+            3. [Logical Operators](#c-logical-operators)
+
+<br>
+
 ## **General**
+---
 
 - Language that computer speak is binaries (1 and 0).
 - IDE (Integrated Development Enviroment) are tools used to write programs.
@@ -17,7 +40,10 @@
 
 
 ## **C Related**
-### <u>General</u>
+---
+
+### General
+======
 - File that holds C codes ends with **.c**.
 - C codes are compiled using the command `make filename`
   - filename ends with .c but not required to be used when compiling
@@ -28,8 +54,8 @@
 
 <br/>
 
-
-### <u>Coding</u>
+### Coding
+======
 - A C coding file requires
   - header(s)
   - the main function
@@ -98,6 +124,9 @@
 <br>
 
 #### **2. Data Types and Variables**
+
+#### **a. Data Types**
+
 - `hello world` printed earlier is a type of data called `string`
 - the data types that are available in C are:
   - `string` (more than 1 characters)
@@ -110,6 +139,7 @@
 
 <br>
 
+#### **b. Variables**
 - Variables can be looked as containers that hold information (specific data).
   - a variable need to be declared (created) with the appropriate data type to hold said value.
   - variable name is used to identify the variable and usually starts with uppercase or lowercase letter.
@@ -141,6 +171,7 @@
 
 <br>
 
+#### **c. Variables with different data types**
 - different variable types have the variables written differently.
 - Examples are as following:
   - `string` (more than 1 characters)
@@ -177,6 +208,8 @@
 
 <br>
 
+#### **d. User Input**
+
 - Variables can also store information from user. This is done by getting input from user, storing in variable and subsequently, using/printing it.
   - CS50.h library has different functions that get input from user
   - Example of getting a name from user, storing it and then printing a greeting using given name in a file called `greet.c`
@@ -210,6 +243,7 @@
 
 <br>
 
+#### **e. Overwriting Variables and Constant Variables**
 - variables that are created thus far, can be overwritten. Example (`age.c`):
     ```c
     #include <stdio.h>
@@ -249,6 +283,8 @@
 <br>
 
 #### **3. Arithmetics Operators, Formatting and Typecasting**
+
+#### **a. Arithmetic Operators**
 - there are 5 arithmetic operators:
   - `+` (addition)
   - `-` (subtraction)
@@ -256,6 +292,10 @@
   - `/` (division)
   - `%` (modulus)
 - A division operator gives the value of the quotient whereas modulus operator gives the value of the remainder.
+
+<br>
+
+#### **b. Using Arithmetic Operators**
 - Examples of arithmetic operations:
   - Using only integers
     ```c
@@ -370,6 +410,10 @@
 #### **4. Conditionals and Logical Operators**
 - To execute codes only when certain condition is fulfilled, a conditional statement can be used.
 - conditional statements are compared using conditional operators
+
+<br>
+
+#### **a. Types of Conditional Operators**
 - the conditional operators are:
   - `>` (greater than)
   - `>=` (greater than or equals to)
@@ -378,6 +422,11 @@
   - `==` (equals to, check if its the same)
   - `!=` (inequality, check if its different)
 - the result of a conditional statement is always `bool` that is either `True` or `False`. If `True`, the block under the statement is executed, else skipped.
+
+<br>
+
+#### **b. Conditional Statements**
+
 - The syntax is
     ```c
     if (condition)
@@ -385,8 +434,6 @@
         // do this code
     }
     ```
-
-<br>
 
 - Conditional statements can take into account multiple scenario; that is if first condition is not satisfied, check next, if not next until the last one. This is done using `if-else if-else` statements:
   ```c
@@ -429,6 +476,11 @@
   ```
   > all 3 output is printed. Its because each if statement is separated, so, it checks each time. `if-else if-else` is counted as one whole thing. The moment one code is executed, it skips the rest.
   - multiple conditions can be combined to get a more specific code execution.
+
+<br>
+
+#### **c. Logical Operators**
+
   - conditions are combined using logical operators such as:
     - `&&` => and operator => check if two conditions are `True`
       ```c
